@@ -1,7 +1,10 @@
 const { response } = require('express');
 const express = require('express');
 const morgan = require('morgan')
+const cors = require('cors');
 const app = express();
+app.use(cors());
+
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 morgan.token('tokencillo', function (req, res) { return req.headers['content-tokencillo'] })
 
@@ -109,3 +112,12 @@ app.listen(process.env.PORT || 3001);
 
 
 
+(async () => {
+
+    const response = await fetch('https://immense-gorge-46926.herokuapp.com/api/persons')
+    const users = await response.json()
+    console.log(users)
+  
+  
+  })()
+  
